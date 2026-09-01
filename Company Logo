@@ -1,0 +1,21 @@
+import sys
+from collections import Counter
+
+def company_logo():
+    # Read the string (stripping any trailing whitespace)
+    s = input().strip()
+    
+    # Count the frequencies of each character
+    counts = Counter(s)
+    
+    # Sort the items based on two conditions:
+    # 1. -x[1]: Sort by occurrence count in descending order (hence the negative sign)
+    # 2. x[0]: If counts are equal, sort by the character alphabetically
+    sorted_chars = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    
+    # Print the top 3 characters and their counts
+    for i in range(3):
+        print(f"{sorted_chars[i][0]} {sorted_chars[i][1]}")
+
+if __name__ == '__main__':
+    company_logo()
