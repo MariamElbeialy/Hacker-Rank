@@ -1,0 +1,43 @@
+def piling_up():
+    # Read the number of test cases
+    T = int(input())
+    
+    for _ in range(T):
+        # Read the number of cubes
+        n = int(input())
+        # Read the cube lengths
+        blocks = list(map(int, input().split()))
+        
+        # Initialize two pointers
+        left = 0
+        right = n - 1
+        
+        # Track the size of the block currently on top of the pile
+        # Start with infinity so any block can be placed first
+        top_of_pile = float('inf')
+        possible = True
+        
+        while left <= right:
+            # Greedily pick the largest available block from the ends
+            if blocks[left] >= blocks[right]:
+                chosen = blocks[left]
+                left += 1
+            else:
+                chosen = blocks[right]
+                right -= 1
+                
+            # Check if the chosen block can be placed on the pile
+            if chosen > top_of_pile:
+                possible = False
+                break
+                
+            # Update the top of the pile
+            top_of_pile = chosen
+            
+        if possible:
+            print("Yes")
+        else:
+            print("No")
+
+if __name__ == '__main__':
+    piling_up()
